@@ -223,3 +223,25 @@ def mock_chat_response_streaming_payload():
         ],
         "data: [DONE]\n\n",
     ]
+
+
+def mock_completion_response_payload() -> str:
+    return orjson.dumps(
+        {
+            "id": "chat-98c8c60e3fbf4fc49658eddaf447357c",
+            "object": "chat.completion",
+            "created": 1703165682,
+            "choices": [
+                {
+                    "finish_reason": "stop",
+                    "message": {
+                        "role": "assistant",
+                        "content": "  a + b",
+                    },
+                    "index": 0,
+                }
+            ],
+            "model": "mistral-small",
+            "usage": {"prompt_tokens": 90, "total_tokens": 90, "completion_tokens": 0},
+        }
+    ).decode()
